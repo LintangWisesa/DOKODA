@@ -1,0 +1,93 @@
+
+mysql> describe rumahsakit;
++----------+--------------+------+-----+----------------------------------------------------------------+-------+
+| Field    | Type         | Null | Key | Default                                                        | Extra |
++----------+--------------+------+-----+----------------------------------------------------------------+-------+
+| kode     | int(11)      | NO   | PRI | NULL                                                           |       |
+| tglreg   | date         | YES  |     | NULL                                                           |       |
+| nama     | varchar(255) | NO   |     | NULL                                                           |       |
+| jenis    | varchar(255) | YES  |     | NULL                                                           |       |
+| kelas    | varchar(10)  | YES  |     | NULL                                                           |       |
+| direktur | varchar(255) | YES  |     | NULL                                                           |       |
+| pemilik  | varchar(255) | YES  |     | NULL                                                           |       |
+| alamat   | varchar(255) | YES  |     | NULL                                                           |       |
+| kabkota  | varchar(255) | YES  |     | NULL                                                           |       |
+| telp     | varchar(255) | YES  |     | NULL                                                           |       |
+| email    | varchar(255) | YES  |     | NULL                                                           |       |
+| password | varchar(255) | YES  |     | NULL                                                           |       |
+| web      | varchar(255) | YES  |     | NULL                                                           |       |
+| rating   | int(11)      | YES  |     | 5                                                              |       |
+| img      | varchar(255) | YES  |     | https://www.emerus.com/em-assets/uploads/ahn-mccandless-pr.jpg |       |
++----------+--------------+------+-----+----------------------------------------------------------------+-------+
+
+mysql> describe dokter;
++---------------+----------------------+------+-----+---------+-------+
+| Field         | Type                 | Null | Key | Default | Extra |
++---------------+----------------------+------+-----+---------+-------+
+| str           | varchar(255)         | NO   | PRI | NULL    |       |
+| nama          | varchar(255)         | NO   |     | NULL    |       |
+| sex           | set('pria','wanita') | YES  |     | NULL    |       |
+| univ          | varchar(255)         | YES  |     | NULL    |       |
+| kompetensi    | varchar(255)         | YES  |     | NULL    |       |
+| email         | varchar(255)         | YES  |     | NULL    |       |
+| password      | varchar(255)         | YES  |     | NULL    |       |
+| str_awal      | date                 | YES  |     | NULL    |       |
+| str_akhir     | date                 | YES  |     | NULL    |       |
+| kabkota       | varchar(255)         | YES  |     | NULL    |       |
+| lokasipraktek | int(11)              | YES  |     | NULL    |       |
+| rating        | int(11)              | YES  |     | NULL    |       |
+| foto          | varchar(255)         | YES  |     | NULL    |       |
++---------------+----------------------+------+-----+---------+-------+
+
+mysql> describe pasien;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| ktp        | varchar(255) | NO   | PRI | NULL    |       |
+| bpjs       | varchar(255) | YES  |     | NULL    |       |
+| nama       | varchar(255) | YES  |     | NULL    |       |
+| tgl_lahir  | date         | YES  |     | NULL    |       |
+| sex        | int(11)      | YES  |     | NULL    |       |
+| alamat     | varchar(255) | YES  |     | NULL    |       |
+| email      | varchar(255) | YES  |     | NULL    |       |
+| password   | varchar(255) | YES  |     | NULL    |       |
+| telp       | varchar(255) | YES  |     | NULL    |       |
+| norekmedis | varchar(255) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+
+mysql> describe pantri;
++-----------+--------------+------+-----+-------------------+----------------+
+| Field     | Type         | Null | Key | Default           | Extra          |
++-----------+--------------+------+-----+-------------------+----------------+
+| pano      | int(11)      | NO   | PRI | NULL              | auto_increment |
+| padstr    | varchar(255) | YES  |     | NULL              |                |
+| papktp    | varchar(255) | YES  |     | NULL              |                |
+| patime    | timestamp    | YES  |     | CURRENT_TIMESTAMP |                |
+| pakeluhan | varchar(255) | YES  |     | NULL              |                |
+| pastatus  | varchar(255) | YES  |     | NULL              |                |
++-----------+--------------+------+-----+-------------------+----------------+
+6 rows in set (0.00 sec)
+
+ describe dantri;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| dastr    | varchar(255) | YES  | UNI | NULL    |       |
+| dano     | int(11)      | NO   |     | 0       |       |
+| dastatus | varchar(255) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into dantri (dastr, dastatus) values ('123', 'offline');
+Query OK, 1 row affected (0.14 sec)
+
+mysql> select * from dantri;
++-------+------+----------+
+| dastr | dano | dastatus |
++-------+------+----------+
+| 123   |    0 | offline  |
++-------+------+----------+
+1 row in set (0.00 sec)
+
+// dari hardware = tambah antrian dokter, ubah status dokter!
+update dantri set dano = dano + 1, dastatus = 'online' where dastr = '123';

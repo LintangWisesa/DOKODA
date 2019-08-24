@@ -1,0 +1,62 @@
+contoh db kemkes.go.id & http://www.kki.go.id/
+
+// tabel RS
+http://sirs.yankes.kemkes.go.id/rsonline/data_list.php?
+
+KODE	3172749 
+TGL REGISTRASI	22/10/2013 
+NAMA	RSK Pusat Otak Nasional 
+JENIS	RSK Otak 
+KELAS	A 
+DIREKTUR	dr. Mursyid Bustami, Sp. S(K), KIC MARS 
+PEMILIK	Kemkes
+ALAMAT	Jl MT Haryono Kav 11, Kelurahan Cawang, Kecamatan Kramat Jati, Jakarta Timur 
+KABKOTA	Kota Jakarta Timur 
+TELP	02129373377
+EMAIL	rspotakn@gmail.com 
+WEBSITE	www.rspon.co.id 
+
+// ===========================================
+// tabel dokter
+http://www.kki.go.id/cekdokter/form
+
+STR     32.1.1.402.3.19.134578
+Nama	: REZA PRAMAYUDHA	
+Sex	: PRIA
+Univ	: Padjadjaran
+Kompetensi	: Dokter Spesialis Penyakit Jantung dan Pembuluh Darah
+email : ''
+NoBerkas	: 489953
+BerlakuSTR	: 15 May 2019
+AkhirSTR	: 04 Jul 2024
+KabKota	: KOTA BANDUNG
+Praktek	: ''            =>  tabel RS
+
+// tabel pasien
+
+KTP
+BPJS
+Nama
+TglLahir
+Sex
+Alamat
+email
+password
+telp
+no_rm
+
+// tabel rekammedis
+
+no_rm
+no_antrian
+str
+Pemeriksaan
+Diagnosa
+Tindakan
+Alergi Obat
+Resep
+Kesimpulan
+Kondisi Pasien Keluar
+
+ktp 16
+bpjs 11
