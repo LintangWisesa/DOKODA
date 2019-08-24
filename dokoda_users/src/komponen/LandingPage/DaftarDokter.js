@@ -9,7 +9,7 @@ class DaftarDokter extends Component{
                     <div className="row justify-content-center">
                         <div className="col-xl-8">
                             <div className="section_tittle text-center">
-                                {/* <h2>Status Antrian</h2> */}
+                                <p className='alert alert-primary'>Silakan login untuk mengetahui daftar dokter, RS mitra & status antrian.</p>
                                 <p className='row'>
                                     <div className='col-sm-4'>
                                         <svg height="30" width="30">

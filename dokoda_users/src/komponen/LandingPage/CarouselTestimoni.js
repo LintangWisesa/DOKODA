@@ -11,42 +11,30 @@ class CarouselTestimoni extends Component{
                                 <div className="client_review_single">
                                     <img src="img/Quote.png" className="Quote" alt="quote"/>
                                     <div className="client_review_text">
-                                        <p>Also made from. Give may saying meat there from heaven it lights face had is gathered
-                                            god dea earth light for life may itself shall whales made they're blessed whales
-                                            also made from give
-                                            may saying meat. There from heaven it lights face had amazing place</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet bibendum enim. In massa tempor nec feugiat. Nunc aliquet bibendum enim facilisis gravida. Nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Amet luctus venenatis lectus magna fringilla.</p>
                                     </div>
-                                    <h4>Mosan Cameron, <span>Executive of fedex</span></h4>
+                                    <h4>dr. Udin Sutisna, <span>dokter umum Puskesmas Padalarang</span></h4>
                                 </div>
                                 <div className="client_review_single">
                                     <img src="img/Quote.png" className="Quote" alt="quote"/>
                                     <div className="client_review_text media-body">
-                                        <p>Also made from. Give may saying meat there from heaven it lights face had is gathered
-                                            god dea earth light for life may itself shall whales made they're blessed whales
-                                            also made from give
-                                            may saying meat. There from heaven it lights face had amazing place</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet bibendum enim. In massa tempor nec feugiat. Nunc aliquet bibendum enim facilisis gravida. Nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Amet luctus venenatis lectus magna fringilla.</p>
                                     </div>
-                                    <h4>Mosan Cameron, <span>Executive of fedex</span></h4>
+                                    <h4>dr. Bambang Subagyo, S.Pd, <span>spesialis penyakit dalam RS. Sami Mawon</span></h4>
                                 </div>
                                 <div className="client_review_single">
                                     <img src="img/Quote.png" className="Quote" alt="quote"/>
                                     <div className="client_review_text">
-                                        <p>Also made from. Give may saying meat there from heaven it lights face had is gathered
-                                            god dea earth light for life may itself shall whales made they're blessed whales
-                                            also made from give
-                                            may saying meat. There from heaven it lights face had amazing place</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet bibendum enim. In massa tempor nec feugiat. Nunc aliquet bibendum enim facilisis gravida. Nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Amet luctus venenatis lectus magna fringilla.</p>
                                     </div>
-                                    <h4>Mosan Cameron, <span>Executive of fedex</span></h4>
+                                    <h4>dr. Ike Tampubolon, <span>dokter umum RS. Dang Horas</span></h4>
                                 </div>
                                 <div className="client_review_single">
                                     <img src="img/Quote.png" className="Quote" alt="quote"/>
                                     <div className="client_review_text">
-                                        <p>Also made from. Give may saying meat there from heaven it lights face had is gathered
-                                            god dea earth light for life may itself shall whales made they're blessed whales
-                                            also made from give
-                                            may saying meat. There from heaven it lights face had amazing place</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet bibendum enim. In massa tempor nec feugiat. Nunc aliquet bibendum enim facilisis gravida. Nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Amet luctus venenatis lectus magna fringilla.</p>
                                     </div>
-                                    <h4>Mosan Cameron, <span>Executive of fedex</span></h4>
+                                    <h4>Dr. drg. Ujang Sumirah, <span>Direktur RSUD Wamena</span></h4>
                                 </div>
                             </div>
                         </div>

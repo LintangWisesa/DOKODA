@@ -21,7 +21,7 @@ class App extends Component{
             login: 'no'
         }
     }
-
+    
     componentDidMount(){
     }
 
@@ -39,7 +39,7 @@ class App extends Component{
                 })
                 window.location.replace("/")
             } else {
-                alert('Email/password salah!')
+                alert('Mohon maaf, email/password Anda tidak terdaftar! Silakan input email & password yang valid. 🙏😊')
             }
         }).catch((x)=>{
             console.log(x)
@@ -60,7 +60,7 @@ class App extends Component{
                 })
                 window.location.replace("/")
             } else {
-                alert('Email/password salah!')
+                alert('Mohon maaf, email/password Anda tidak terdaftar! Silakan input email & password yang valid. 🙏😊')
             }
         }).catch((x)=>{
             console.log(x)
@@ -96,7 +96,7 @@ class App extends Component{
                                     id="navbarSupportedContent">
                                     <ul className="navbar-nav align-items-center">
                                         <li className="nav-item active">
-                                            <a className="nav-link" href="#beranda">Beranda</a>
+                                            <a className="nav-link" href="/">Beranda</a>
                                         </li>
                                         <li className="nav-item">
                                             <a className="nav-link" href="/rumahsakit">RS Mitra</a>
@@ -152,7 +152,7 @@ class App extends Component{
                                     id="navbarSupportedContent">
                                     <ul className="navbar-nav align-items-center">
                                         <li className="nav-item active">
-                                            <a className="nav-link" href="#beranda">Beranda</a>
+                                            <a className="nav-link" href="/">Beranda</a>
                                         </li>
                                         <li className="nav-item">
                                             <a className="nav-link" href="/rumahsakit">RS Mitra</a>
@@ -225,29 +225,6 @@ class App extends Component{
                                         <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" id="navbarDropdown_1"
                                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Signup&nbsp;
-                                            </a>
-                                            <div className="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                                <a className="dropdown-item" href="#dpasien">
-                                                    <i className="fas fa-user"></i>
-                                                    &nbsp;
-                                                    Pasien Signup
-                                                </a>
-                                                <a className="dropdown-item" href="#ddokter">
-                                                    <i className="fas fa-stethoscope"></i>
-                                                    &nbsp;
-                                                    Dokter Signup
-                                                </a>
-                                                <a className="dropdown-item" href="#dmitra">
-                                                    <i className="fas fa-clinic-medical"></i>
-                                                    &nbsp;
-                                                    Mitra Signup
-                                                </a>
-                                            </div>
-                                        </li>
-                                        <li className="nav-item dropdown">
-                                            <a className="nav-link dropdown-toggle" id="navbarDropdown_1"
-                                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Login&nbsp;
                                             </a>
                                             <div className="dropdown-menu" aria-labelledby="navbarDropdown_1">
@@ -291,7 +268,8 @@ class App extends Component{
                     <Route path="/dok/:str" component={ProfilDokter}/>
                     <Route path="/user/:ktp" component={ProfilPasien}/>
                     <Route path="/rumahsakit" component={PageListRS}/>
-                    <Route path="/rs/:kode" component={ProfilRS}/>
+                    {/* <Route path="/rs/:kode" component={ProfilRS}/> */}
+                    <Route path="/rs/:kode" render={(props) => <ProfilRS {...props} user={this.state.user} />}/>
                 </div>
         
         

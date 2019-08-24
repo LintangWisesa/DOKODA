@@ -10,8 +10,8 @@ class PageHome extends Component{
         return(
         <div>
             <BannerHome/>
-            <VideoTentang/>     
-            <DaftarDokter/>
+            {/* <VideoTentang/>      */}
+            {/* <DaftarDokter/> */}
             <CarouselTestimoni/>
             <Footer/>
         </div>

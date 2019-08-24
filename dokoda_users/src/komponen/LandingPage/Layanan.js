@@ -25,7 +25,8 @@ class Layanan extends Component{
                                         <li><i className="fas fa-check-circle"></i> 
                                             &nbsp;Konsultasi dengan dokter kesayangan</li>
                                     </ul>
-                                    <a href="" style={{width: "200px", backgroundColor:'gray'}} className="btn_2 btn_daftar">
+                                    <a onClick={()=>{alert('Mohon maaf, fitur signup belum tersedia. Tunggu perkembangan kami selanjutnya, atau hubungi customer service kami. 🙏😊')}}  
+                                    style={{color:'white', width: "200px", backgroundColor:'gray'}} className="btn_2 btn_daftar">
                                         <i style={{color: "white"}} className="fas fa-user"></i>
                                         &nbsp;
                                         Pasien Signup
@@ -58,7 +59,8 @@ class Layanan extends Component{
                                         <li><i className="fas fa-check-circle"></i> 
                                             &nbsp;Profesional</li>
                                     </ul>
-                                    <a href="" style={{width: "200px", backgroundColor:'gray'}} className="btn_2">
+                                    <a onClick={()=>{alert('Mohon maaf, fitur signup belum tersedia. Tunggu perkembangan kami selanjutnya, atau hubungi customer service kami. 🙏😊')}} 
+                                    style={{color:'white', width: "200px", backgroundColor:'gray'}} className="btn_2">
                                         <i style={{color: "white"}} className="fas fa-stethoscope"></i>
                                         &nbsp;
                                         Dokter Signup
@@ -99,7 +101,8 @@ class Layanan extends Component{
                                         <li><i className="fas fa-check-circle"></i> 
                                             &nbsp;Mudah, murah & cepat</li>
                                     </ul>
-                                    <a href="" style={{width: "200px", backgroundColor:'gray'}} className="btn_2 btn_daftar">
+                                    <a href onClick={()=>{alert('Mohon maaf, fitur signup belum tersedia. Tunggu perkembangan kami selanjutnya, atau hubungi customer service kami. 🙏😊')}}
+                                    style={{width: "200px", backgroundColor:'gray', color:'white'}} className="btn_2 btn_daftar">
                                         <i style={{color: "white"}} className="fas fa-clinic-medical"></i>
                                         &nbsp;
                                         Mitra Signup

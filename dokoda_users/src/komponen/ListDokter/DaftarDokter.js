@@ -22,7 +22,7 @@ class DaftarDokter extends Component{
             })
         })
         .catch((x)=>{
-            // console.log(x)
+            console.log(x)
         })
     }
     
@@ -33,6 +33,11 @@ class DaftarDokter extends Component{
     render(){
 
         var listDokter = this.state.dataDokter.map((val, i)=>{
+            var lingkaranStatus = (
+                val.dastatus == 'on' ? 'lime' :        // if 'on' 
+                val.dastatus == 'rest' ? 'orange' :    // else if 'rest' 
+                'lightcoral'                            // else 'off'
+            )
             return (
                 <div key={i} className="col-sm-6 col-lg-3 mb-5">
                     <div className="single_blog_item">
@@ -40,9 +45,9 @@ class DaftarDokter extends Component{
                             <Link to={`/dok/${val.dstr}`}>
                                 <img src={val.dfoto} alt="doctor"/>
                                 <svg height="100" width="100" style={{position: "absolute", top: "-30px", left: "-30px", fontSize: "50px"}}>
-                                    <circle cx="50" cy="50" r="30" stroke="lightcoral" stroke-width="3" fill="lightcoral" />    
+                                    <circle cx="50" cy="50" r="30" stroke={lingkaranStatus} stroke-width="3" fill={lingkaranStatus} />    
                                     <text style={{fontSize: "35px"}} fill="white" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
-                                        0
+                                        {val.dano}
                                     </text>
                                 </svg>
                             </Link>

@@ -43,9 +43,9 @@ router.get('/rumahsakit/:kode', (req, res) => {
     })
 })
 
-// GET all dokter
+// GET all dokter + status antrian
 router.get('/dokter', (req, res) => {
-    var dbStat = 'select * from dokter'
+    var dbStat = 'select * from dokter d, dantri da where dstr = dastr'
     db.query(dbStat, (error, output) => {
         if(error){
             console.log(error)
@@ -56,9 +56,9 @@ router.get('/dokter', (req, res) => {
     })
 })
 
-// GET dokter by str
+// GET dokter + status antrian by str
 router.get('/dokter/:str', (req, res) => {
-    var dbStat = 'select * from dokter where dstr = ?'
+    var dbStat = 'select * from dokter d, dantri da where dstr = dastr and dstr = ?'
     db.query(dbStat, req.params.str, (error, output) => {
         if(error){
             console.log(error)
@@ -71,7 +71,7 @@ router.get('/dokter/:str', (req, res) => {
 
 // GET all dokter yg praktek di RS tertentu
 router.get('/daftardokrs/:rskode', (req, res) => {
-    var dbStat = 'select * from dokter d, rumahsakit r where dlokasipraktek = rskode and dlokasipraktek = ?'
+    var dbStat = 'select * from dokter d, rumahsakit r, dantri da where dstr = dastr and dlokasipraktek = rskode and dlokasipraktek = ?'
     db.query(dbStat, req.params.rskode, (error, output) => {
         if(error){
             console.log(error)
@@ -110,7 +110,7 @@ router.get('/pasien/:str', (req, res) => {
 
 // GET dokter dg RS prakteknya
 router.get('/dokrs', (req, res) => {
-    var dbStat = 'select * from dokter d, rumahsakit r where d.dlokasipraktek = r.rskode'
+    var dbStat = 'select * from dokter d, rumahsakit r, dantri da where dstr = dastr and d.dlokasipraktek = r.rskode'
     db.query(dbStat, (error, output) => {
         if(error){
             console.log(error)
@@ -123,7 +123,7 @@ router.get('/dokrs', (req, res) => {
 
 // GET dokter dg RS prakteknya by STR
 router.get('/dokrs/:str', (req, res) => {
-    var dbStat = 'select * from dokter d, rumahsakit r where d.dlokasipraktek = r.rskode and dstr = ?'
+    var dbStat = 'select * from dokter d, rumahsakit r, dantri da where dstr = dastr and d.dlokasipraktek = r.rskode and dstr = ?'
     db.query(dbStat, req.params.str, (error, output) => {
         if(error){
             console.log(error)

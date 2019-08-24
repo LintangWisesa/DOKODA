@@ -39,6 +39,10 @@ class ProfilRS extends Component{
         })
     }
     
+    ambilAntrian = (nomor, pktp, keluhan) => {
+        alert(this.state.dokter[nomor].dstr + pktp + keluhan)
+    }
+
     render(){
 
         var profilRS = this.state.profil.map((val, i)=>{
@@ -116,12 +120,24 @@ class ProfilRS extends Component{
         })
 
         var listDokter = this.state.dokter.map((val, i)=>{
+            var lingkaranStatus = (
+                val.dastatus == 'on' ? 'lime' :        // if 'on' 
+                val.dastatus == 'rest' ? 'orange' :    // else if 'rest' 
+                'lightcoral'                            // else 'off'
+            )
             return (
                 <div key={i} className="col-sm-6 col-lg-3 mb-5">
-                    <Link to={`/dok/${val.dstr}`}>
                     <div className="single_blog_item">
                         <div className="single_blog_img">
-                            <img src={val.dfoto} alt="doctor"/>
+                            <Link to={`/dok/${val.dstr}`}>
+                                <img src={val.dfoto} alt="doctor"/>
+                                <svg height="100" width="100" style={{position: "absolute", top: "-30px", left: "-30px", fontSize: "50px"}}>
+                                    <circle cx="50" cy="50" r="30" stroke={lingkaranStatus} stroke-width="3" fill={lingkaranStatus} />    
+                                    <text style={{fontSize: "35px"}} fill="white" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                                        {val.dano}
+                                    </text>
+                                </svg>
+                            </Link>
                             <div className="social_icon">
                                 <a href="#"> <i className="ti-facebook"></i> </a>
                                 <a href="#"> <i className="ti-twitter-alt"></i> </a>
@@ -145,10 +161,16 @@ class ProfilRS extends Component{
                                 &nbsp;&nbsp;<span style={{fontStyle:'italic'}}>
                                     {val.rsnama}
                                 </span> 
+                                <br></br>
+                                <button 
+                                data-toggle="modal" data-target="#ambilAntri" value={i} ref='tombol'
+                                onClick={(e)=>{this.setState({opsi: e.target.value})}}
+                                className="my-3 btn btn-small btn-primary btn-block">
+                                    Ambil Antrian
+                                </button>
                             </div>
                         </div>
                     </div>
-                    </Link>
                 </div>
             )
         })
@@ -168,6 +190,46 @@ class ProfilRS extends Component{
             </section>
             
             <Footer/>
+
+            {/* modal ambil antrian */}
+            <div style={{marginTop:'150px'}} className="modal fade" id="ambilAntri" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-scrollable" role="document">
+                        <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalScrollableTitle">
+                                <i className="fas fa-user"></i>
+                                &nbsp;&nbsp;
+                                {this.props.user.pnama}
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <i className="fas fa-id-card"></i>
+                                &nbsp;&nbsp;
+                                <i style={{fontWeight:'lighter'}}>KTP:</i>
+                                &nbsp;{this.props.user.pktp}
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1"><b>Keluhan Pasien</b></label>
+                            <textarea ref='keluhan' class="form-control" placeholder='Sampaikan keluhan Anda...' id="exampleFormControlTextarea1" rows="5"></textarea>
+                        </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">
+                                Batal
+                            </button>
+                            <button 
+                            onClick={(e)=>{this.ambilAntrian(this.state.opsi, this.props.user.pktp, this.refs.keluhan.value)}}
+                            className="btn btn-primary">
+                                Ambil Antrian
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         )
     }
