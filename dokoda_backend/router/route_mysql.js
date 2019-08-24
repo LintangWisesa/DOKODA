@@ -2,6 +2,7 @@ var router = require('express').Router()
 var mysql = require('mysql')
 var bodyParser = require('body-parser')
 var cors = require('cors')
+var axios = require('axios')
 
 router.use(bodyParser.json())
 router.use(cors())
@@ -205,6 +206,45 @@ router.post('/rating', (req, res) => {
         } else {
             console.log(output)
             res.send(output)
+        }
+    })
+})
+
+// POST untuk update antrian dokter
+router.post('/dantri', (req, res) => {
+    var dbStat = "update dantri set dano = ?, dastatus = ? where dastr = '12.1.1.123.1.12.123456'"
+    var dastr = '12.1.1.123.1.12.123456'
+    var dano = req.body.dano
+    var dastatus = req.body.dastatus
+    // res.send(req.body)
+    db.query(dbStat, [dano, dastatus], (error, output) => {
+        if(error){
+            console.log(error)
+        } else {
+            console.log(output)
+            var url = 'https://platform.antares.id:8443/~/antares-cse/antares-id/dokoda/dokoda'
+            var config = {
+                headers: {
+                    'X-M2M-Origin': 'd9e77b1c1d3ab3dd:3851cc16aaf01fa8',
+                    'Content-Type': 'application/json; ty=4',
+                    'Accept': 'application/json'
+                }
+            }
+            var body = {
+                "m2m:cin": {
+                   "con": "{\"dano\": " + dano + ", \"dastr\":" + dastr + ", \"dastatus\":" + dastatus + "}"
+                }
+             }
+            axios.post(url, body, config)
+            .then((x)=>{
+                res.send(output)
+                console.log(output)
+            })
+            .catch((x)=>{
+                res.send(output)
+                console.log(output)
+            })
+            // res.send(output)
         }
     })
 })
