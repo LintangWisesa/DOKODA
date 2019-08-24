@@ -52,5 +52,25 @@
         <li><b>GET</b> /rekmed/{ nomor_rekam_medis }</li>
     </ul>
 
+    <b>Antrian Pasien</b>
+    <ul>
+        <li><b>GET</b> /pantri/{ nomor_str }</li>
+        <li><b>GET</b> /pantri/{ nomor_ktp }</li>
+        <li><b>POST</b> /pantri/{ ktpdanstr }
+            <i style="margin-left: 20px">body: {"pkeluhan": "pegal linu"}</i>
+            <i style="margin-left: 20px">response: data antrian</i>
+        </li>
+        <li><b>POST</b> /email
+            <i style="margin-left: 20px">body: {
+                    "pnama": "ANDI",
+                    "dnama": "BUDI",
+                    "rsnama": "RS. OK",
+                    "antrian": 12,
+                    "pfoto": "http://localhost:1234/foto/pas_1.jpg"
+            }</i>
+            <i style="margin-left: 20px">response: Email terkirim</i>
+        </li>
+    </ul>
+
 </body>
 </html>

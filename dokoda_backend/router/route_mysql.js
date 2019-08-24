@@ -135,9 +135,178 @@ router.get('/pasien/:str', (req, res) => {
 })
 
 // GET rekam medis by pasien prekmed (no. buku rekam medis) urut terbaru
-router.get('/rekmed/:rmno', (req, res) => {
-    var dbStat = 'select * from rekammedis re, pasien p, dokter d where re.rmno = p.prekmed and re.dstr = d.dstr and re.rmno = ? order by rmtime desc'
-    db.query(dbStat, req.params.rmno, (error, output) => {
+router.get('/rekmed/:rm', (req, res) => {
+    var dbStat = 'select * from rekammedis re, pasien p, dokter d, rumahsakit rs where re.rmno = p.prekmed and re.dstr = d.dstr and d.dlokasipraktek = rs.rskode and re.rmno = ? order by rmtime desc'
+    db.query(dbStat, req.params.rm, (error, output) => {
+        if(error){
+            console.log(error)
+        } else {
+            console.log(output)
+            res.send(output)
+        }
+    })
+})
+
+// GET rekam medis by pasien KTP (no. buku rekam medis) urut terbaru
+router.get('/rekmedktp/:ktp', (req, res) => {
+    var dbStat = 'select * from pasien p, rekammedis re, dokter d, rumahsakit rs where re.rmno = p.prekmed and re.rmdstr = d.dstr and d.dlokasipraktek = rs.rskode and p.pktp = ? order by rmtime desc'
+    db.query(dbStat, req.params.ktp, (error, output) => {
+        if(error){
+            console.log(error)
+        } else {
+            console.log(output)
+            res.send(output)
+        }
+    })
+})
+
+// POST ke rekam medis
+router.post('/rekmed', (req, res) => {
+    var dbStat = 'insert into rekammedis (rmno, dstr, rmperiksa, rmdiagnosa, rmtindakan, rmalergi, rmresep, rmkesimpulan, rmkondisiout) values (?,?,?,?,?,?,?,?,?)'
+    var x = req.body
+    var data = [
+        x.rmno, x.dstr, x.periksa, x.diagnosa, x.tindakan,
+        x.alergi, x.resep, x.kesimpulan, x.kondisi
+    ]
+    db.query(dbStat, data, (error, output) => {
+        if(error){
+            console.log(error)
+        } else {
+            console.log(output)
+            res.send(output)
+        }
+    })
+})
+
+// POST antrian yg sudah diperiksa dokter
+router.post('/pantrisudah', (req, res) => {
+    var dbStat = 'update pantri set pastatus = "selesai" where pano = ? and padstr = ?'
+    var pano = req.body.pano
+    var padstr = req.body.padstr
+    db.query(dbStat, [pano, padstr], (error, output) => {
+        if(error){
+            console.log(error)
+        } else {
+            console.log(output)
+            res.send(output)
+        }
+    })
+})
+
+// POST rating
+router.post('/rating', (req, res) => {
+    var dbStat = 'insert into rating values (?,?,?)'
+    var dstr = req.body.dstr
+    var pktp = req.body.pktp
+    var rating = req.body.rating
+    db.query(dbStat, [dstr, pktp, rating], (error, output) => {
+        if(error){
+            console.log(error)
+        } else {
+            console.log(output)
+            res.send(output)
+        }
+    })
+})
+
+// POST untuk dapat nomor antrian!
+// 1. get antrian dokter, apa ada yg msh kosong
+//      jika ada langsung post no antri 1
+// 2. jika sdh ada antrian, 
+//      maka post dg no antri = no antri sebelumnya + 1
+router.post('/pantri/:ktpdanstr', (req, res) => {
+    var dataBody = req.body
+    var pktp = req.params.ktpdanstr.slice(0,16)
+    var dstr = req.params.ktpdanstr.slice(16, req.params.ktpdanstr.length)
+    console.log(dataBody)
+    var dbStat = 'select * from pantri pa, pasien p, dokter d where pano = 0 and padstr = ? and padstr = dstr and papktp = pktp;'
+    db.query(dbStat, dstr, (error, output) => {
+        if(error){
+            // console.log(error)
+        } else {
+            // console.log(output)
+            if(output.length == 0){
+                var dbStat = 'insert into pantri (pano, padstr, papktp, pakeluhan) values (?, ?, ?, ?)'
+                var data = {
+                    pano: 0,
+                    dstr: dstr,
+                    pktp: pktp,
+                    pakeluhan: dataBody.pakeluhan
+                }
+                // console.log(data)
+                db.query(dbStat, [data.pano, data.dstr, data.pktp, data.pakeluhan], (error, output) => {
+                    if(error){
+                        // console.log(error)
+                        res.send(error)
+                    } else {
+                        // console.log(output)
+                        res.send({
+                            pano: 0,
+                            dstr: dstr,
+                            pktp: pktp,
+                            pakeluhan: dataBody.pakeluhan 
+                        })
+                    }
+                })
+            }
+            else {
+                var dbStat = 'select * from pantri where padstr = ? order by pano desc limit 1'
+                // console.log(data)
+                db.query(dbStat, dstr, (error, output) => {
+                    if(error){
+                        // console.log(error)
+                        res.send(error)
+                    } else {
+                        console.log(output[0])
+                        var hasil = JSON.parse(JSON.stringify(output[0]))
+                        // console.log(hasil)
+                        var myPano = parseInt(hasil.pano) + 1
+                        var dbStat = 'insert into pantri (pano, padstr, papktp, pakeluhan) values (?, ?, ?, ?)'
+                        var data = {
+                            pano: myPano,
+                            dstr: dstr,
+                            pktp: pktp,
+                            pakeluhan: dataBody.pakeluhan
+                        }
+                        // console.log(data)
+                        db.query(dbStat, [data.pano, data.dstr, data.pktp, data.pakeluhan], (error, output) => {
+                            if(error){
+                                // console.log(error)
+                                res.send(error)
+                            } else {
+                                // console.log(output)
+                                res.send({
+                                    pano: myPano,
+                                    dstr: dstr,
+                                    pktp: pktp,
+                                    pakeluhan: dataBody.pakeluhan 
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        }
+    })
+})
+
+// get atrian pasien tertentu by KTP
+router.get('/pantri/:ktp', (req, res) => {
+    var dbStat = 'select * from pantri pa, pasien p, dokter d, rumahsakit rs where papktp = pktp and padstr = dstr and dlokasipraktek = rskode and papktp = ? and pastatus = "belum"'
+    db.query(dbStat, req.params.ktp, (error, output) => {
+        if(error){
+            console.log(error)
+        } else {
+            console.log(output)
+            res.send(output)
+        }
+    })
+})
+
+// get atrian pasien tertentu by dokter str
+router.get('/pantridok/:str', (req, res) => {
+    var dbStat = 'select * from pantri pa, pasien p, dokter d, rumahsakit rs where papktp = pktp and padstr = dstr and dlokasipraktek = rskode and padstr = ? and pastatus = "belum"'
+    db.query(dbStat, req.params.str, (error, output) => {
         if(error){
             console.log(error)
         } else {

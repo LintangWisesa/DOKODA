@@ -59,14 +59,18 @@ mysql> describe pantri;
 +-----------+--------------+------+-----+-------------------+----------------+
 | Field     | Type         | Null | Key | Default           | Extra          |
 +-----------+--------------+------+-----+-------------------+----------------+
-| pano      | int(11)      | NO   | PRI | NULL              | auto_increment |
+| pano      | int(11)      | NO   |     | NULL              | auto_increment |
 | padstr    | varchar(255) | YES  |     | NULL              |                |
 | papktp    | varchar(255) | YES  |     | NULL              |                |
 | patime    | timestamp    | YES  |     | CURRENT_TIMESTAMP |                |
 | pakeluhan | varchar(255) | YES  |     | NULL              |                |
-| pastatus  | varchar(255) | YES  |     | NULL              |                |
+| pastatus  | varchar(255) | YES  |     | belum              |                |
 +-----------+--------------+------+-----+-------------------+----------------+
 6 rows in set (0.00 sec)
+
+nilai pano ambil dulu dari no antri DANTRI lalu +1
+
+insert into (pano, padstr, papktp, pakeluhan) values ('x', 'y', 'z', 'a');
 
  describe dantri;
 +----------+--------------+------+-----+---------+-------+

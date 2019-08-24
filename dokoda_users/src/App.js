@@ -12,6 +12,8 @@ import ProfilPasien from './komponen/ProfilPasien'
 import PageListRS from './komponen/PageListRS'
 import ProfilRS from './komponen/ProfilRS'
 import RekamMedis from './komponen/RekamMedis'
+import PasienAntri from './komponen/PasienAntri'
+import DokterAntri from './komponen/DokterAntri'
 
 class App extends Component{
 
@@ -103,7 +105,7 @@ class App extends Component{
                                             <a className="nav-link" href="/rumahsakit">RS Mitra</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#kontak">Antrian</a>
+                                            <a className="nav-link" href={`/pantridok/${this.state.user.dstr}`}>Antrian</a>
                                         </li>
                                         <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" id="navbarDropdown_1"
@@ -163,6 +165,9 @@ class App extends Component{
                                         </li>
                                         <li className="nav-item">
                                             <a className="nav-link" href={`/rekmed/${this.state.user.prekmed}`}>Rekam Medisku</a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link" href={`/pantri/${this.state.user.pktp}`}>Antrianku</a>
                                         </li>
                                         <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" id="navbarDropdown_1"
@@ -270,6 +275,8 @@ class App extends Component{
                     <Route path="/user/:ktp" component={ProfilPasien}/>
                     {/* <Route path="/rekmed/:ktp" component={RekamMedis}/> */}
                     <Route path="/rekmed/:prekmed" render={(props) => <RekamMedis {...props} user={this.state.user} />}/>
+                    <Route path="/pantri/:ktp" render={(props) => <PasienAntri {...props} user={this.state.user} />}/>
+                    <Route path="/pantridok/:str" render={(props) => <DokterAntri {...props} user={this.state.user} />}/>
                     <Route path="/rumahsakit" component={PageListRS}/>
                     {/* <Route path="/rs/:kode" component={ProfilRS}/> */}
                     <Route path="/rs/:kode" render={(props) => <ProfilRS {...props} user={this.state.user} />}/>

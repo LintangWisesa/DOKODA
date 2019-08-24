@@ -3,10 +3,14 @@
 var express = require('express')
 var cors = require('cors')
 var route_mysql = require('./router/route_mysql')
+var email_notif = require('./router/email_notif')
+var bodyParser = require('body-parser')
 
 var app = express()
 app.use(route_mysql)
+app.use(email_notif)
 app.use(cors())
+app.use(bodyParser.json())
 app.use('/file', express.static('storage'));
 
 // foto dokter = /foto/doctor_1.png

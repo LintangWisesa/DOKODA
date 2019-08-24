@@ -39,8 +39,64 @@ class ProfilRS extends Component{
         })
     }
     
-    ambilAntrian = (nomor, pktp, keluhan) => {
-        alert(this.state.dokter[nomor].dstr + pktp + keluhan)
+        ambilAntrian = (nomor, pktp, keluhan) => {
+        // alert(this.state.dataDokter[nomor].dstr + pktp + keluhan)
+        var url = `http://localhost:1234/pantri/${pktp}${this.state.dokter[nomor].dstr}`
+        var namaDok = this.state.dokter[nomor].dnama
+        var namaRS = this.state.dokter[nomor].rsnama
+        var namaPasien = this.props.user.pnama
+        var foto = this.props.user.pfoto
+        axios.post(url, {
+            pakeluhan: keluhan
+        })
+        .then((x)=>{
+            // console.log(x)
+            var noAntriKu = x.data.pano
+            // console.log(noAntriKu)
+            // console.log(namaDok)
+            // console.log(namaRS)
+            
+            // kirim email
+            var url = 'http://localhost:1234/email'
+            axios.post(url, {
+                pnama: namaPasien, 
+                dnama: namaDok, 
+                rsnama: namaRS, 
+                antrian: noAntriKu, 
+                pfoto: foto
+            })
+            .then((x) => {
+                alert(`[DOKODA] No. antrian Anda = ${noAntriKu} dengan 👨‍⚕ ${namaDok} di 🏥 ${namaRS}`)
+                window.location.replace(`/pantri/${pktp}`)
+            })
+            .catch((x) => {
+                alert(`GAGAL BRO! 😭😭😭😭😭😭😭😭😭😭😭`)
+            })
+
+            // kirim SMS
+            // var urlSms = 'http://api.thebigbox.id/sms-notification/1.0.0/messages'
+            // const requestBody = {
+            //     msisdn: '08886719327',
+            //     content: `[DOKODA] No.antrian Anda = ${noAntriKu} dengan ${namaDok} di ${namaRS}`
+            // } 
+            // const config = {
+            //     headers: {
+            //         'Content-Type': 'application/x-www-form-urlencoded',
+            //         'x-api-key': 'aPT39V2olbGGkiWFenlVVOhRsiTGP13j',
+            //         'X-MainAPI-Senderid': 'telkom'
+            //     }
+            // }
+            // axios.post(urlSms, qs.stringify(requestBody), config)
+            // .then((x) => {
+            //     alert(`[DOKODA] No. antrian Anda = ${noAntriKu} dengan ${namaDok} di ${namaRS}`)
+            // })
+            // .catch((x) => {
+            //     alert(`[DOKODA] \n No. antrian Anda = ${noAntriKu} dengan ${namaDok} di ${namaRS}`)
+            // })
+        })
+        .catch((x)=>{
+            alert('Gagal')
+        })
     }
 
     render(){
