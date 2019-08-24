@@ -232,7 +232,7 @@ router.post('/dantri', (req, res) => {
             }
             var body = {
                 "m2m:cin": {
-                   "con": "{\"dano\": " + dano + ", \"dastr\":" + dastr + ", \"dastatus\":" + dastatus + "}"
+                   "con": "{\"dano\": " + dano + ", \"dastr\": " + dastr + ", \"dastatus\":" + dastatus + "}"
                 }
              }
             axios.post(url, body, config)
