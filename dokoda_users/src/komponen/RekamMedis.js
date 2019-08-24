@@ -31,10 +31,10 @@ class ProfilDokter extends Component{
         var myRekmed = this.state.rekmed.map((val, i)=>{
             return (
                 <div class="card">
-                    <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target={'#'+i} 
-                        aria-expanded="false" aria-controls={i}>
+                    <div className="card-header bg-primary text-white" id={`head`+String(i)}>
+                    <h2 className="mb-0">
+                        <button style={{color:'white'}} className="btn" type="button" data-toggle="collapse" data-target={`#col`+String(i)} 
+                        aria-expanded="false" aria-controls='col1'>
                             Rekam Medis 
                             &nbsp;&nbsp;<i style={{color:'orange'}} class="fas fa-calendar-plus"></i>
                             &nbsp;&nbsp;{val.rmtime.split('T')[0]}
@@ -44,9 +44,45 @@ class ProfilDokter extends Component{
                     </h2>
                     </div>
 
-                    <div id={i} className="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div id={`col`+String(i)} className="collapse" aria-labelledby={`head`+String(i)} data-parent="#accordionExample">
                     <div className="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        <h4>
+                            Diperiksa oleh:
+                            &nbsp;&nbsp;
+                            <i style={{color:'orange'}} class="fas fa-stethoscope"></i>
+                            &nbsp;&nbsp;{val.dnama}
+                            &nbsp;&nbsp;
+                            <i style={{color:'orange'}} class="fas fa-id-card"></i>
+                            &nbsp;&nbsp;{val.dstr}
+                            &nbsp;&nbsp;
+                        </h4>
+                        <hr></hr>
+                        <div className='row'>
+                            <div className='col-sm-4 col-lg-4'>
+                                <h5>Pemeriksaan</h5>
+                                <p>{val.rmperiksa}</p>
+                                <hr></hr>
+                                <h5>Diagnosa</h5>
+                                <p>{val.rmdiagnosa}</p>
+                                <hr></hr>
+                                <h5>Tindakan</h5>
+                                <p>{val.rmtindakan}</p>
+                            </div>
+                            <div className='col-sm-4 col-lg-4'>
+                                <h5>Alergi</h5>
+                                <p>{val.rmalergi}</p>
+                                <hr></hr>
+                                <h5>Resep</h5>
+                                <p>{val.rmresep}</p>
+                            </div>
+                            <div className='col-sm-4 col-lg-4'>
+                                <h5>Kesimpulan</h5>
+                                <p>{val.rmkesimpulan}</p>
+                                <hr></hr>
+                                <h5>Diagnosa</h5>
+                                <p>{val.rmkondisiout}</p>
+                            </div>
+                        </div>
                     </div>
                     </div>
                 </div>
