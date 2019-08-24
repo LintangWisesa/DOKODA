@@ -85,9 +85,32 @@ mysql> select * from dantri;
 +-------+------+----------+
 | dastr | dano | dastatus |
 +-------+------+----------+
-| 123   |    0 | offline  |
+| 123   |    0 | off      |
 +-------+------+----------+
 1 row in set (0.00 sec)
 
 // dari hardware = tambah antrian dokter, ubah status dokter!
-update dantri set dano = dano + 1, dastatus = 'online' where dastr = '123';
+update dantri set dano = dano + 1, dastatus = 'on' where dastr = '123';
+
+mysql> describe rekammedis;
++--------------+--------------+------+-----+-------------------+-------+
+| Field        | Type         | Null | Key | Default           | Extra |
++--------------+--------------+------+-----+-------------------+-------+
+| rmno         | varchar(255) | YES  |     | NULL              |       |
+| dstr         | varchar(255) | YES  |     | NULL              |       |
+| pano         | int(11)      | YES  |     | NULL              |       |
+| rmperiksa    | varchar(255) | YES  |     | NULL              |       |
+| rmdiagnosa   | varchar(255) | YES  |     | NULL              |       |
+| rmtindakan   | varchar(255) | YES  |     | NULL              |       |
+| rmalergi     | varchar(255) | YES  |     | NULL              |       |
+| rmresep      | varchar(255) | YES  |     | NULL              |       |
+| rmkesimpulan | varchar(255) | YES  |     | NULL              |       |
+| rmkondisiout | varchar(255) | YES  |     | NULL              |       |
+| rmtime       | timestamp    | YES  |     | CURRENT_TIMESTAMP |       |
++--------------+--------------+------+-----+-------------------+-------+
+11 rows in set (0.00 sec)
+
+insert into rekammedis
+(rmno, dstr, pano, rmperiksa, rmdiagnosa, rmtindakan, rmalergi, rmresep, rmkesimpulan, rmkondisiout)
+values 
+('6969Lintang', '12.1.1.123.1.12.123456', '2', 'Tes asam urat & tungkai bawah', 'Asam urat', 'Suntik pereda nyeri', '-', 'Piroxicam 100mg', 'Asam urat terlalu tinggi, kolesterol tinggi', 'Susah berjalan, asam urat >200');

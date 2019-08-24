@@ -11,6 +11,7 @@ import ProfilDokter from './komponen/ProfilDokter'
 import ProfilPasien from './komponen/ProfilPasien'
 import PageListRS from './komponen/PageListRS'
 import ProfilRS from './komponen/ProfilRS'
+import RekamMedis from './komponen/RekamMedis'
 
 class App extends Component{
 
@@ -161,7 +162,7 @@ class App extends Component{
                                             <a className="nav-link" href="/dokter">Dokter</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#kontak">Rekam Medisku</a>
+                                            <a className="nav-link" href={`/rekmed/${this.state.user.prekmed}`}>Rekam Medisku</a>
                                         </li>
                                         <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" id="navbarDropdown_1"
@@ -267,6 +268,8 @@ class App extends Component{
                     <Route path="/dokter" render={(props) => <PageListDok {...props} user={this.state.user} />}/>
                     <Route path="/dok/:str" component={ProfilDokter}/>
                     <Route path="/user/:ktp" component={ProfilPasien}/>
+                    {/* <Route path="/rekmed/:ktp" component={RekamMedis}/> */}
+                    <Route path="/rekmed/:prekmed" render={(props) => <RekamMedis {...props} user={this.state.user} />}/>
                     <Route path="/rumahsakit" component={PageListRS}/>
                     {/* <Route path="/rs/:kode" component={ProfilRS}/> */}
                     <Route path="/rs/:kode" render={(props) => <ProfilRS {...props} user={this.state.user} />}/>

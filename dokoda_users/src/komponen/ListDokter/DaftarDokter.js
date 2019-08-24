@@ -69,14 +69,26 @@ class DaftarDokter extends Component{
                                 </Link>
 
                                 <i style={{color:'orange'}} class="mt-3 fas fa-star"></i>
-                                &nbsp;&nbsp;<span style={{fontWeight:'bold'}}>
+                                &nbsp;&nbsp;
+                                <span style={{fontWeight:'bold'}}>
                                     {val.drating}
                                 </span>
-                                &nbsp;&nbsp;<i style={{color:'orange'}} class="fas fa-map-marker-alt"></i>
-                                &nbsp;&nbsp;<span style={{fontStyle:'italic'}}>
+                                &nbsp;&nbsp;
+                                <i style={{color:'orange'}} class="fas fa-map-marker-alt"></i>
+                                &nbsp;&nbsp;
+                                <span style={{fontStyle:'italic'}}>
                                     {val.rsnama}
                                 </span>
+                                <br></br><br></br>
+                                <i style={{color:'orange'}} class="fas fa-calendar-plus"></i>
+                                &nbsp;&nbsp;
+                                {val.djadwal}
+                                &nbsp;&nbsp;
+                                <i style={{color:'orange'}} class="fas fas fa-clock"></i>
+                                &nbsp;&nbsp;
+                                {val.djam}
                                 <br></br>
+
                                 <button 
                                 data-toggle="modal" data-target="#ambilAntri" value={i} ref='tombol'
                                 onClick={(e)=>{this.setState({opsi: e.target.value})}}

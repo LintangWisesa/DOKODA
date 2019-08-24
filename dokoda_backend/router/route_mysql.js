@@ -82,6 +82,32 @@ router.get('/daftardokrs/:rskode', (req, res) => {
     })
 })
 
+// GET dokter dg RS prakteknya
+router.get('/dokrs', (req, res) => {
+    var dbStat = 'select * from dokter d, rumahsakit r, dantri da where dstr = dastr and d.dlokasipraktek = r.rskode'
+    db.query(dbStat, (error, output) => {
+        if(error){
+            console.log(error)
+        } else {
+            console.log(output)
+            res.send(output)
+        }
+    })
+})
+
+// GET dokter dg RS prakteknya by STR
+router.get('/dokrs/:str', (req, res) => {
+    var dbStat = 'select * from dokter d, rumahsakit r, dantri da where dstr = dastr and d.dlokasipraktek = r.rskode and dstr = ?'
+    db.query(dbStat, req.params.str, (error, output) => {
+        if(error){
+            console.log(error)
+        } else {
+            console.log(output)
+            res.send(output)
+        }
+    })
+})
+
 // GET all pasien
 router.get('/pasien', (req, res) => {
     var dbStat = 'select * from pasien'
@@ -108,23 +134,10 @@ router.get('/pasien/:str', (req, res) => {
     })
 })
 
-// GET dokter dg RS prakteknya
-router.get('/dokrs', (req, res) => {
-    var dbStat = 'select * from dokter d, rumahsakit r, dantri da where dstr = dastr and d.dlokasipraktek = r.rskode'
-    db.query(dbStat, (error, output) => {
-        if(error){
-            console.log(error)
-        } else {
-            console.log(output)
-            res.send(output)
-        }
-    })
-})
-
-// GET dokter dg RS prakteknya by STR
-router.get('/dokrs/:str', (req, res) => {
-    var dbStat = 'select * from dokter d, rumahsakit r, dantri da where dstr = dastr and d.dlokasipraktek = r.rskode and dstr = ?'
-    db.query(dbStat, req.params.str, (error, output) => {
+// GET rekam medis by pasien prekmed (no. buku rekam medis) urut terbaru
+router.get('/rekmed/:rmno', (req, res) => {
+    var dbStat = 'select * from rekammedis re, pasien p, dokter d where re.rmno = p.prekmed and re.dstr = d.dstr and re.rmno = ? order by rmtime desc'
+    db.query(dbStat, req.params.rmno, (error, output) => {
         if(error){
             console.log(error)
         } else {

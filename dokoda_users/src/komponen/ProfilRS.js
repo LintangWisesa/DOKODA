@@ -161,7 +161,16 @@ class ProfilRS extends Component{
                                 &nbsp;&nbsp;<span style={{fontStyle:'italic'}}>
                                     {val.rsnama}
                                 </span> 
+                                <br></br><br></br>
+                                <i style={{color:'orange'}} class="fas fa-calendar-plus"></i>
+                                &nbsp;&nbsp;
+                                {val.djadwal}
+                                &nbsp;&nbsp;
+                                <i style={{color:'orange'}} class="fas fas fa-clock"></i>
+                                &nbsp;&nbsp;
+                                {val.djam}
                                 <br></br>
+                                
                                 <button 
                                 data-toggle="modal" data-target="#ambilAntri" value={i} ref='tombol'
                                 onClick={(e)=>{this.setState({opsi: e.target.value})}}
