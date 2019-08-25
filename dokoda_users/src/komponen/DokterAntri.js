@@ -108,6 +108,16 @@ class PasienAntri extends Component{
                             <i style={{color:'orange'}} class="fas fa-check"></i>
                             &nbsp;&nbsp;{val.pastatus} diperiksa
                             &nbsp;&nbsp;
+                            <i style={{color:'orange'}} class="fas fa-book-medical"></i>
+                            <a href={`/rekmed/6969Lintang`}>
+                                &nbsp;&nbsp;Rekam medis
+                                &nbsp;&nbsp;
+                            </a>
+                        </h4>
+                        <h4>
+                            <i style={{color:'orange'}} class="fas fa-procedures"></i>
+                            &nbsp;&nbsp;{val.pakeluhan}
+                            &nbsp;&nbsp;
                         </h4>
                         <hr></hr>
                         

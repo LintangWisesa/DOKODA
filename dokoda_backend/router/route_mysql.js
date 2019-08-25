@@ -268,7 +268,7 @@ router.post('/pantri/:ktpdanstr', (req, res) => {
             if(output.length == 0){
                 var dbStat = 'insert into pantri (pano, padstr, papktp, pakeluhan) values (?, ?, ?, ?)'
                 var data = {
-                    pano: 0,
+                    pano: 1,
                     dstr: dstr,
                     pktp: pktp,
                     pakeluhan: dataBody.pakeluhan
@@ -281,7 +281,7 @@ router.post('/pantri/:ktpdanstr', (req, res) => {
                     } else {
                         // console.log(output)
                         res.send({
-                            pano: 0,
+                            pano: 1,
                             dstr: dstr,
                             pktp: pktp,
                             pakeluhan: dataBody.pakeluhan 
