@@ -2,6 +2,8 @@
 
 # DOKODA
 
+![logo](./img/logo.png)
+
 1. Backend: Node.js, Express.js
 2. Database: MySQL
 3. Frontend: React
